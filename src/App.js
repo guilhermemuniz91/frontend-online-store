@@ -12,10 +12,11 @@ function App() {
       <Switch>
         <Route exact path="/" component={ Home } />
         <Route
-          path="/:slug"
+          path="/productdetails/:slug"
           render={ (props) => <ProductDetails { ...props } /> }
         />
-        <Route exact path="/ShoppingCart" component={ ShoppingCart } />
+        <Route path="/ShoppingCart" component={ ShoppingCart } />
+
       </Switch>
     </div>
   );

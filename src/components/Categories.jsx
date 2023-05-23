@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom/cjs/react-router-dom.min';
+import { Link } from 'react-router-dom';
 import { getCategories } from '../services/api';
 
 export default class Categories extends Component {
@@ -49,7 +49,7 @@ export default class Categories extends Component {
                 <p>{product.price}</p>
                 <Link
                   data-testid="product-detail-link"
-                  to={ `/${product.id}` }
+                  to={ `/productdetails/${product.id}` }
                 >
                   Detalhes
 
