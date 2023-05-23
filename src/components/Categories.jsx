@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import { getCategories } from '../services/api';
 
 export default class Categories extends Component {
@@ -46,6 +47,13 @@ export default class Categories extends Component {
                 <p>{product.title}</p>
                 <img src={ product.thumbnail } alt={ product.title } />
                 <p>{product.price}</p>
+                <Link
+                  data-testid="product-detail-link"
+                  to={ `/productdetails/${product.id}` }
+                >
+                  Detalhes
+
+                </Link>
               </div>
             ))
           }
