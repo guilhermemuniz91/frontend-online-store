@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 export default class Search extends Component {
   state = {
@@ -15,6 +16,19 @@ export default class Search extends Component {
   handleChange = ({ target }) => {
     const { name, value } = target;
     this.setState((prev) => ({ ...prev, [name]: value }));
+  };
+
+  addProductToCart = (product) => {
+    let localStorageCart = JSON.parse(localStorage.getItem('cart'));
+    if (!localStorageCart) {
+      localStorageCart = [];
+    }
+
+    if (!localStorageCart.some((item) => item.id === product.id)) {
+      product.quantity = 1;
+      localStorageCart.push(product);
+      localStorage.setItem('cart', JSON.stringify(localStorageCart));
+    }
   };
 
   render() {
@@ -46,6 +60,19 @@ export default class Search extends Component {
                 <p>{product.title}</p>
                 <img src={ product.thumbnail } alt={ product.title } />
                 <p>{product.price}</p>
+                <button
+                  data-testid="product-add-to-cart"
+                  onClick={ () => this.addProductToCart(product) }
+                >
+                  Adicionar ao carrinho
+                </button>
+                <Link
+                  data-testid="product-detail-link"
+                  to={ `/productdetails/${product.id}` }
+                >
+                  Detalhes
+
+                </Link>
               </div>
             ))
           )}
